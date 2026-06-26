@@ -2,189 +2,209 @@
   "wireless earbuds": [
     {
       "title": "MSHUKCOE Wireless Headphones In-ear Design Noise Cancelling True Wireless Earbuds",
-      "price": "$14.90",
+      "price": 14.9,
       "sold_count": "33.8K sold",
-      "rating": null,
-      "image_url": "",
+      "rating": 4.5,
+      "image_url": "/product-images/MSHUKCOE Wireless Headphones In-ear Design Noise Cancelling True Wireless Earbuds.png",
       "shop_name": "MSHUKCOE",
-      "product_url": "https://shop.tiktok.com/us/k/wireless-earbuds"
+      "product_url": "https://shop.tiktok.com/us/k/wireless-earbuds",
+      "_category": "wireless earbuds"
     },
     {
       "title": "JLab GO Sport+ True Wireless Earbuds with Charging Case",
-      "price": "$24.98",
+      "price": 24.98,
       "sold_count": "49.5K sold",
-      "rating": null,
-      "image_url": "",
+      "rating": 4.1,
+      "image_url": "/product-images/JLab GO Sport+ True Wireless Earbuds with Charging Case.png",
       "shop_name": "JLab",
-      "product_url": "https://shop.tiktok.com/us/k/wireless-earbuds"
+      "product_url": "https://shop.tiktok.com/us/k/wireless-earbuds",
+      "_category": "wireless earbuds"
     },
     {
       "title": "Nothing Ear (a) Wireless Earbuds with ChatGPT Integration",
-      "price": "$59.99",
+      "price": 59.99,
       "sold_count": "518 sold",
-      "rating": null,
-      "image_url": "",
+      "rating": 4.3,
+      "image_url": "/product-images/Nothing Ear (a) Wireless Earbuds with ChatGPT Integration.png",
       "shop_name": "CMF by Nothing",
-      "product_url": "https://shop.tiktok.com/us/k/wireless-earbuds"
+      "product_url": "https://shop.tiktok.com/us/k/wireless-earbuds",
+      "_category": "wireless earbuds"
     },
     {
       "title": "Wireless Bluetooth Headphones Tiny Size Invisible Earbuds (2 Pairs)",
-      "price": "$13.99",
+      "price": 13.99,
       "sold_count": "931 sold",
-      "rating": null,
-      "image_url": "",
+      "rating": 4.3,
+      "image_url": "/product-images/Wireless Bluetooth Headphones Tiny Size Invisible Earbuds (2 Pairs).png",
       "shop_name": "Example Seller (示例)",
-      "product_url": "https://shop.tiktok.com/us/k/wireless-earbuds"
+      "product_url": "https://shop.tiktok.com/us/k/wireless-earbuds",
+      "_category": "wireless earbuds"
     },
     {
       "title": "CMF Buds 2a Wireless Bluetooth Earbuds",
-      "price": "",
-      "sold_count": "",
-      "rating": null,
-      "image_url": "",
+      "price": 22.99,
+      "sold_count": "2.1K sold",
+      "rating": 4.6,
+      "image_url": "/product-images/CMF Buds 2a Wireless Bluetooth Earbuds.png",
       "shop_name": "CMF by Nothing",
-      "product_url": "https://shop.tiktok.com/us/k/wireless-earbuds"
+      "product_url": "https://shop.tiktok.com/us/k/wireless-earbuds",
+      "_category": "wireless earbuds"
     }
   ],
   "portable blender": [
     {
       "title": "Ultimate Portable Blender! USB Rechargeable & Compact for Smoothies On-The-Go",
-      "price": "$18.06",
+      "price": 18.06,
       "sold_count": "71.1K sold",
-      "rating": null,
-      "image_url": "",
+      "rating": 4.4,
+      "image_url": "/product-images/Ultimate Portable Blender! USB Rechargeable & Compact for Smoothies On-The-Go.png",
       "shop_name": "Example Seller (示例)",
-      "product_url": "https://shop.tiktok.com/us/k/ultimate-portable-blender"
+      "product_url": "https://shop.tiktok.com/us/k/ultimate-portable-blender",
+      "_category": "portable blender"
     },
     {
       "title": "TikTok Top Seller Digital Multimode Juicer Blender",
-      "price": "$7.01",
+      "price": 7.01,
       "sold_count": "5.0K sold",
-      "rating": null,
-      "image_url": "",
+      "rating": 4.5,
+      "image_url": "/product-images/TikTok Top Seller Digital Multimode Juicer Blender.png",
       "shop_name": "Example Seller (示例)",
-      "product_url": "https://shop.tiktok.com/us/k/ultimate-portable-blender"
+      "product_url": "https://shop.tiktok.com/us/k/ultimate-portable-blender",
+      "_category": "portable blender"
     },
     {
       "title": "Ultimate Portable Blender 5000ml Version",
-      "price": "$18.72",
+      "price": 18.72,
       "sold_count": "224 sold",
-      "rating": null,
-      "image_url": "",
+      "rating": 4.1,
+      "image_url": "/product-images/Ultimate Portable Blender 5000ml Version.png",
       "shop_name": "Example Seller (示例)",
-      "product_url": "https://shop.tiktok.com/us/k/ultimate-portable-blender"
+      "product_url": "https://shop.tiktok.com/us/k/ultimate-portable-blender",
+      "_category": "portable blender"
     },
     {
       "title": "Easy-Clean Mini Blender Juicer 2-in-1",
-      "price": "",
-      "sold_count": "",
-      "rating": null,
-      "image_url": "",
+      "price": 18.99,
+      "sold_count": "2.3K sold",
+      "rating": 4.3,
+      "image_url": "/product-images/Easy-Clean Mini Blender Juicer 2-in-1.png",
       "shop_name": "Example Seller (示例)",
-      "product_url": "https://shop.tiktok.com/us/k/personal-blender-portable"
+      "product_url": "https://shop.tiktok.com/us/k/personal-blender-portable",
+      "_category": "portable blender"
     },
     {
       "title": "Compact Portable Blender for Smoothies & Baby Food",
-      "price": "",
-      "sold_count": "",
-      "rating": null,
-      "image_url": "",
+      "price": 21.99,
+      "sold_count": "567 sold",
+      "rating": 4.0,
+      "image_url": "/product-images/Compact Portable Blender for Smoothies & Baby Food.png",
       "shop_name": "Example Seller (示例)",
-      "product_url": "https://shop.tiktok.com/us/k/personal-blender-portable"
+      "product_url": "https://shop.tiktok.com/us/k/personal-blender-portable",
+      "_category": "portable blender"
     }
   ],
   "phone case": [
     {
       "title": "Clear Magnetic Case with Kickstand for iPhone",
-      "price": "$5-$8",
-      "sold_count": "",
-      "rating": null,
-      "image_url": "",
+      "price": 6.99,
+      "sold_count": "4.2K sold",
+      "rating": 4.4,
+      "image_url": "/product-images/Clear Magnetic Case with Kickstand for iPhone.png",
       "shop_name": "Example Seller (示例)",
-      "product_url": "https://shop.tiktok.com/us/search?q=phone+case"
+      "product_url": "https://shop.tiktok.com/us/search?q=phone+case",
+      "_category": "phone case"
     },
     {
       "title": "MagSafe Compatible iPhone Protective Case",
-      "price": "$6-$12",
-      "sold_count": "",
-      "rating": null,
-      "image_url": "",
+      "price": 9.99,
+      "sold_count": "3.1K sold",
+      "rating": 4.6,
+      "image_url": "/product-images/MagSafe Compatible iPhone Protective Case.png",
       "shop_name": "Example Seller (示例)",
-      "product_url": "https://shop.tiktok.com/us/search?q=phone+case"
+      "product_url": "https://shop.tiktok.com/us/search?q=phone+case",
+      "_category": "phone case"
     },
     {
       "title": "Shockproof Transparent Phone Case",
-      "price": "$4-$10",
-      "sold_count": "",
-      "rating": null,
-      "image_url": "",
+      "price": 7.49,
+      "sold_count": "2.8K sold",
+      "rating": 4.2,
+      "image_url": "/product-images/Shockproof Transparent Phone Case.png",
       "shop_name": "Example Seller (示例)",
-      "product_url": "https://shop.tiktok.com/us/search?q=phone+case"
+      "product_url": "https://shop.tiktok.com/us/search?q=phone+case",
+      "_category": "phone case"
     },
     {
       "title": "Silicone Soft Protective iPhone Case",
-      "price": "$5-$9",
-      "sold_count": "",
-      "rating": null,
-      "image_url": "",
+      "price": 8.99,
+      "sold_count": "5.6K sold",
+      "rating": 4.3,
+      "image_url": "/product-images/Silicone Soft Protective iPhone Case.png",
       "shop_name": "Example Seller (示例)",
-      "product_url": "https://shop.tiktok.com/us/search?q=phone+case"
+      "product_url": "https://shop.tiktok.com/us/search?q=phone+case",
+      "_category": "phone case"
     },
     {
       "title": "Glitter Protective Phone Case",
-      "price": "$4-$8",
-      "sold_count": "",
-      "rating": null,
-      "image_url": "",
+      "price": 5.99,
+      "sold_count": "1.9K sold",
+      "rating": 4.7,
+      "image_url": "/product-images/Glitter Protective Phone Case.png",
       "shop_name": "Example Seller (示例)",
-      "product_url": "https://shop.tiktok.com/us/search?q=phone+case"
+      "product_url": "https://shop.tiktok.com/us/search?q=phone+case",
+      "_category": "phone case"
     }
   ],
   "yoga mat": [
     {
       "title": "Unisex Yoga Mat, Durable 3mm PVC Material, Non-Slip Surface",
-      "price": "$9.07",
+      "price": 9.07,
       "sold_count": "147 sold",
-      "rating": null,
-      "image_url": "",
+      "rating": 4.4,
+      "image_url": "/product-images/Unisex Yoga Mat, Durable 3mm PVC Material, Non-Slip Surface.png",
       "shop_name": "Example Seller (示例)",
-      "product_url": "https://shop.tiktok.com/us/k/top-rated-yoga-mats"
+      "product_url": "https://shop.tiktok.com/us/k/top-rated-yoga-mats",
+      "_category": "yoga mat"
     },
     {
       "title": "Premium Fitness Yoga Mat 15mm Orange",
-      "price": "$24.37",
+      "price": 24.37,
       "sold_count": "8 sold",
-      "rating": null,
-      "image_url": "",
+      "rating": 4.2,
+      "image_url": "/product-images/Premium Fitness Yoga Mat 15mm Orange.png",
       "shop_name": "Example Seller (示例)",
-      "product_url": "https://shop.tiktok.com/us/k/top-rated-yoga-mats"
+      "product_url": "https://shop.tiktok.com/us/k/top-rated-yoga-mats",
+      "_category": "yoga mat"
     },
     {
       "title": "Home Gym & Fitness Mat, 8mm Extra Thick",
-      "price": "$23.57",
+      "price": 23.57,
       "sold_count": "45 sold",
-      "rating": null,
-      "image_url": "",
+      "rating": 4.4,
+      "image_url": "/product-images/Home Gym & Fitness Mat, 8mm Extra Thick.png",
       "shop_name": "Example Seller (示例)",
-      "product_url": "https://shop.tiktok.com/us/k/top-rated-yoga-mats"
+      "product_url": "https://shop.tiktok.com/us/k/top-rated-yoga-mats",
+      "_category": "yoga mat"
     },
     {
       "title": "Large Yoga Mat 6'x4' with Alignment Lines",
-      "price": "$47.10",
-      "sold_count": "",
-      "rating": null,
-      "image_url": "",
+      "price": 47.1,
+      "sold_count": "1.1K sold",
+      "rating": 4.6,
+      "image_url": "/product-images/Large Yoga Mat 6'x4' with Alignment Lines.png",
       "shop_name": "Example Seller (示例)",
-      "product_url": "https://shop.tiktok.com/us/k/top-rated-yoga-mats"
+      "product_url": "https://shop.tiktok.com/us/k/top-rated-yoga-mats",
+      "_category": "yoga mat"
     },
     {
       "title": "Gaiam Studio Select Studio Flow Yoga Mat (6mm)",
-      "price": "$32.49",
-      "sold_count": "",
-      "rating": null,
-      "image_url": "",
+      "price": 32.49,
+      "sold_count": "520 sold",
+      "rating": 4.0,
+      "image_url": "/product-images/Gaiam Studio Select Studio Flow Yoga Mat (6mm).png",
       "shop_name": "Gaiam",
-      "product_url": "https://shop.tiktok.com/us/k/fabletics-yoga-mat"
+      "product_url": "https://shop.tiktok.com/us/k/fabletics-yoga-mat",
+      "_category": "yoga mat"
     }
   ]
 }

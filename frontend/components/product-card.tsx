@@ -1,9 +1,59 @@
 "use client";
 
-import { DollarSign, ShoppingCart, Star } from "lucide-react";
+import { useState } from "react";
+import { DollarSign, ShoppingCart, Star, ImageOff } from "lucide-react";
 import { useTranslations } from "next-intl";
 import type { ResearchProduct } from "@/types/report";
 
+// ---------------------------------------------------------------------------
+// ProductThumb — plain <img> with fallback
+// ---------------------------------------------------------------------------
+export function ProductThumb({
+  src,
+  size,
+}: {
+  src: string | null | undefined;
+  size: number;
+}) {
+  const [failed, setFailed] = useState(false);
+
+  if (!src || failed) {
+    return (
+      <div
+        className="flex flex-shrink-0 items-center justify-center rounded-xl"
+        style={{
+          width: size,
+          height: size,
+          backgroundColor: "#E8E4DC",
+        }}
+      >
+        <ImageOff size={Math.max(12, size * 0.4)} className="text-neutral-400" />
+      </div>
+    );
+  }
+
+  // URL-encode each path segment (handles spaces, &, (, ), ', etc.)
+  const encoded = src
+    .split("/")
+    .map((seg) => encodeURIComponent(seg))
+    .join("/");
+
+  return (
+    <img
+      src={encoded}
+      alt=""
+      width={size}
+      height={size}
+      className="flex-shrink-0 rounded-xl object-cover"
+      style={{ width: size, height: size }}
+      onError={() => setFailed(true)}
+    />
+  );
+}
+
+// ---------------------------------------------------------------------------
+// ProductCard
+// ---------------------------------------------------------------------------
 interface ProductCardProps {
   product: ResearchProduct;
   index: number;
@@ -24,6 +74,7 @@ export default function ProductCard({
         className="rounded-2xl p-3 transition-colors"
         style={{ backgroundColor: isTarget ? "#F0EDE7" : "#ffffff", border: "1px solid #D5D0C7" }}
       >
+        {/* Badge row */}
         <div className="mb-2 flex items-start justify-between">
           <span
             className="rounded-lg px-1.5 py-0.5 text-[10px] font-medium"
@@ -40,9 +91,16 @@ export default function ProductCard({
             </span>
           )}
         </div>
-        <p className="mb-2 line-clamp-2 text-[13px] font-medium leading-snug text-neutral-800">
+
+        {/* Product thumbnail */}
+        <ProductThumb src={product.image_url} size={64} />
+
+        {/* Title */}
+        <p className="mt-2 mb-2 line-clamp-2 text-[13px] font-medium leading-snug text-neutral-800">
           {product.title ?? t("untitled")}
         </p>
+
+        {/* Price / Sold / Rating */}
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-neutral-400">
           <span className="flex items-center gap-0.5">
             <DollarSign size={11} />
@@ -70,14 +128,18 @@ export default function ProductCard({
       className="flex items-center gap-3 rounded-2xl p-3 transition-colors"
       style={{ backgroundColor: isTarget ? "#F0EDE7" : "transparent" }}
     >
-      <div
-        className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl text-xs font-medium"
-        style={{
-          backgroundColor: isTarget ? "#DCD7CF" : "#F0EDE7",
-          color: isTarget ? "#171717" : "#a3a3a3",
-        }}
-      >
-        {isTarget ? "★" : `#${index + 1}`}
+      {/* Left: thumbnail + rank badge overlay */}
+      <div className="relative flex-shrink-0" style={{ width: 36, height: 36 }}>
+        <ProductThumb src={product.image_url} size={36} />
+        {/* Rank badge tucked in the bottom-right corner */}
+        <span
+          className="absolute -bottom-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full text-[8px] font-bold leading-none text-white shadow-sm"
+          style={{
+            backgroundColor: isTarget ? "#171717" : "#6B6560",
+          }}
+        >
+          {isTarget ? "★" : index + 1}
+        </span>
       </div>
 
       <div className="min-w-0 flex-1">

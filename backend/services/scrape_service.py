@@ -153,11 +153,19 @@ def _normalise_seed_products(items: list[dict[str, Any]]) -> list[dict[str, Any]
     return out
 
 
-def _parse_seed_price(raw: str | None) -> float | None:
-    """Convert a seed price string like ``"$14.90"`` or ``"$5-$8"`` to float.
+def _parse_seed_price(raw: str | float | int | None) -> float | None:
+    """Convert a seed price value to float.
 
-    Returns ``None`` for range prices or empty strings.
+    Handles:
+    - ``float`` / ``int`` → returned as float directly
+    - ``"$14.90"`` → 14.90
+    - ``"$5-$8"`` → None (range)
+    - ``""`` → None
     """
+    if raw is None:
+        return None
+    if isinstance(raw, (int, float)):
+        return float(raw)
     if not raw:
         return None
     cleaned = str(raw).strip().replace("US ", "").replace("USD", "")

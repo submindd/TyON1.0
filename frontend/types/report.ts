@@ -47,6 +47,16 @@ export interface ResearchResponse {
   strategy: StrategyResult;
 }
 
+/** Product with category, as returned by GET /api/products. */
+export interface ProductWithCategory extends ResearchProduct {
+  category: string;
+}
+
+export interface ProductsResponse {
+  products: ProductWithCategory[];
+  total: number;
+}
+
 /** Client-side generated listing content (not from backend). */
 export interface ListingData {
   seoTitle: string;

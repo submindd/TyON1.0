@@ -8,6 +8,7 @@ from __future__ import annotations
 import asyncio
 import json
 import logging
+import time
 from typing import Any
 
 from core.redis_client import get_redis
@@ -20,6 +21,10 @@ logger = logging.getLogger(__name__)
 # Constants
 # ---------------------------------------------------------------------------
 CACHE_TTL_SECONDS = 86_400  # 24 hours
+
+# In-process memory cache fallback for when Redis is unavailable.
+# Keys: cache_key -> (timestamp, report_json_string)
+_memory_cache: dict[str, tuple[float, str]] = {}
 
 # ---------------------------------------------------------------------------
 # DB persistence
@@ -114,15 +119,31 @@ async def get_or_create_report(
     cache_key = f"report:{platform}:{country}:{norm_key}"
 
     # ---- 1. Try Redis cache ------------------------------------------------
+    redis_ok = False
     try:
         redis = await get_redis()
         cached = await redis.get(cache_key)
+        redis_ok = True
         if cached:
-            logger.info("Cache HIT for '%s'", norm_key)
+            logger.info("Redis cache HIT for '%s'", norm_key)
             return json.loads(cached)
-        logger.info("Cache MISS for '%s'", norm_key)
+        logger.info("Redis cache MISS for '%s'", norm_key)
     except Exception:
-        logger.warning("Redis read failed, proceeding without cache", exc_info=True)
+        logger.warning("Redis read failed, falling back to memory cache", exc_info=True)
+
+    # ---- 1b. Memory cache fallback (only when Redis missed/failed) ----------
+    if not redis_ok or True:  # always check memory as safety net
+        mem_entry = _memory_cache.get(cache_key)
+        if mem_entry is not None:
+            ts, report_json = mem_entry
+            if time.time() - ts < CACHE_TTL_SECONDS:
+                logger.info("Memory cache HIT for '%s'", norm_key)
+                return json.loads(report_json)
+            else:
+                # Expired — clean up
+                del _memory_cache[cache_key]
+
+    logger.info("Cache MISS for '%s', running full pipeline", norm_key)
 
     # ---- 2. Run pipeline ---------------------------------------------------
     raw_products = await search_products(
@@ -143,12 +164,18 @@ async def get_or_create_report(
         "country": country,
     }
 
-    # ---- 3. Write cache (best-effort) --------------------------------------
+    # ---- 3. Write caches (best-effort) -------------------------------------
+    report_json = json.dumps(report, ensure_ascii=False)
+
+    # Always write to in-process memory cache (fast, no network)
+    _memory_cache[cache_key] = (time.time(), report_json)
+    logger.info("Memory-cached report for '%s' (TTL %ds)", norm_key, CACHE_TTL_SECONDS)
+
     try:
-        await redis.set(cache_key, json.dumps(report, ensure_ascii=False), ex=CACHE_TTL_SECONDS)
-        logger.info("Cached report for '%s' (TTL %ds)", norm_key, CACHE_TTL_SECONDS)
+        await redis.set(cache_key, report_json, ex=CACHE_TTL_SECONDS)
+        logger.info("Redis-cached report for '%s' (TTL %ds)", norm_key, CACHE_TTL_SECONDS)
     except Exception:
-        logger.warning("Redis write failed, report not cached", exc_info=True)
+        logger.warning("Redis write failed, report only in memory cache", exc_info=True)
 
     # ---- 4. Persist to DB (fire-and-forget) --------------------------------
     asyncio.create_task(_save_to_db(report))

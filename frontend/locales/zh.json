@@ -127,6 +127,14 @@
     "targetAudience": "目标受众",
     "riskAnalysis": "风险分析"
   },
+  "products": {
+    "title": "商品库",
+    "searchPlaceholder": "搜索商品...",
+    "allCategories": "全部",
+    "resultCount": "个结果",
+    "noSearchResults": "没有匹配的商品。",
+    "noProducts": "暂无商品数据。"
+  },
   "listingGenerator": {
     "title": "商品文案生成器",
     "seoTitle": "SEO 标题",

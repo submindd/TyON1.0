@@ -25,7 +25,7 @@ export default function Sidebar() {
     { label: t("search"), icon: Search, href: "/search", matchPattern: "/search" },
     { label: t("analysis"), icon: BarChart3, href: "/search", matchPattern: "/analysis" },
     { label: t("reports"), icon: FileText, href: "/search", matchPattern: "/report" },
-    { label: t("products"), icon: Package, href: "/search", matchPattern: "/products" },
+    { label: t("products"), icon: Package, href: "/products", matchPattern: "/products" },
     { label: t("settings"), icon: Settings, href: "/search", matchPattern: "/settings" },
   ];
 

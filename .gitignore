@@ -43,3 +43,6 @@ ChatGPT Image*
 
 # Vercel
 .vercel
+
+# Claude
+.claude/

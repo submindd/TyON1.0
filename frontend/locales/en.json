@@ -127,6 +127,14 @@
     "targetAudience": "Target Audience",
     "riskAnalysis": "Risk Analysis"
   },
+  "products": {
+    "title": "Product Library",
+    "searchPlaceholder": "Search products...",
+    "allCategories": "All",
+    "resultCount": "results",
+    "noSearchResults": "No products match your search.",
+    "noProducts": "No products available."
+  },
   "listingGenerator": {
     "title": "Listing Generator",
     "seoTitle": "SEO Title",
