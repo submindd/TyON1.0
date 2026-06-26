@@ -1,0 +1,138 @@
+{
+  "common": {
+    "appName": "TyON",
+    "appTagline": "AI 产品智能分析",
+    "appVersion": "TyON v0.2",
+    "demoVersion": "演示版本",
+    "platformNote": "仅限 TikTok Shop 美区",
+    "tiktokShopBadge": "TikTok Shop 美区",
+    "retry": "重试",
+    "copyToClipboard": "复制到剪贴板",
+    "regenerate": "重新生成",
+    "clear": "清除",
+    "clearAllFilters": "清除所有筛选",
+    "cached": "缓存",
+    "target": "目标",
+    "untitled": "未命名商品",
+    "noProductsFound": "未找到与 \"{keyword}\" 相关的商品。",
+    "noProductsMatchFilters": "没有符合当前筛选条件的商品。",
+    "errorFailedToLoad": "加载失败",
+    "errorFailedProducts": "商品数据加载失败",
+    "errorFailedReport": "报告数据加载失败",
+    "errorUnknown": "未知错误",
+    "aiEstimated": "AI 估算",
+    "verified": "已验证"
+  },
+  "nav": {
+    "search": "搜索",
+    "analysis": "分析",
+    "reports": "报告",
+    "products": "商品",
+    "settings": "设置"
+  },
+  "search": {
+    "title": "TyON",
+    "subtitle": "TikTok Shop 商品智能分析",
+    "searchKeyword": "搜索关键词",
+    "placeholder": "例如 wireless earbuds, yoga mat...",
+    "startResearch": "开始分析",
+    "tryLabel": "试试:",
+    "footer": "TikTok Shop 美区 · AI 驱动研究"
+  },
+  "analysis": {
+    "pageTitle": "分析",
+    "generateReport": "生成 AI 报告",
+    "moreData": "更多数据与图表",
+    "stats": {
+      "products": "商品数",
+      "avgPrice": "均价",
+      "avgRating": "均分",
+      "totalSold": "总销量"
+    },
+    "opportunityScore": "机会分数",
+    "outOf": "/ 100",
+    "filterBar": {
+      "filters": "筛选",
+      "minPrice": "最低价",
+      "maxPrice": "最高价",
+      "minSold": "最低销量",
+      "minRating": "最低评分",
+      "sort": {
+        "bestSellers": "按销量",
+        "priceHighLow": "价格从高到低",
+        "topRated": "按评分"
+      },
+      "soldOptions": {
+        "any": "不限销量",
+        "100": "100+",
+        "1k": "1千+",
+        "10k": "1万+",
+        "50k": "5万+"
+      },
+      "ratingOptions": {
+        "any": "不限评分",
+        "three": "3.0+",
+        "three_five": "3.5+",
+        "four": "4.0+",
+        "four_five": "4.5+"
+      }
+    },
+    "competitorTable": {
+      "title": "主要竞品",
+      "product": "商品",
+      "price": "价格",
+      "sold": "销量",
+      "rating": "评分",
+      "score": "机会分"
+    },
+    "charts": {
+      "priceDistribution": "价格分布",
+      "topSellers": "热销榜"
+    },
+    "aiInsights": "AI 关键洞察",
+    "aiStrategy": "AI 运营建议",
+    "aiRecommendation": "AI 推荐结论"
+  },
+  "report": {
+    "pageTitle": "研究报告",
+    "productDetails": "商品详情",
+    "opportunityScore": "机会分数",
+    "outOf": "/ 100",
+    "marketTrends": "市场趋势",
+    "marketSize": "市场规模",
+    "competition": "竞争度",
+    "topCompetitors": "主要竞品",
+    "listingGenerator": "商品文案生成器",
+    "aiInsights": "AI 关键洞察",
+    "aiStrategy": "AI 运营建议",
+    "aiRecommendation": "AI 推荐结论",
+    "seoTitle": "SEO 标题",
+    "bulletPoints": "五点卖点",
+    "productDescription": "商品描述",
+    "backendKeywords": "后台关键词",
+    "regenerate": "重新生成"
+  },
+  "insightCard": {
+    "title": "AI 关键洞察"
+  },
+  "strategyCard": {
+    "title": "AI 运营建议",
+    "targetAudience": "目标受众",
+    "contentIdeas": "内容创意",
+    "influencerTypes": "达人类型",
+    "suggestedPricing": "建议定价"
+  },
+  "recommendationCard": {
+    "title": "AI 推荐结论",
+    "targetAudience": "目标受众",
+    "riskAnalysis": "风险分析"
+  },
+  "listingGenerator": {
+    "title": "商品文案生成器",
+    "seoTitle": "SEO 标题",
+    "bulletPoints": "五点卖点",
+    "productDescription": "商品描述",
+    "backendKeywords": "后台关键词",
+    "regenerate": "重新生成"
+  }
+}

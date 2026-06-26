@@ -1,0 +1,138 @@
+{
+  "common": {
+    "appName": "TyON",
+    "appTagline": "AI Product Intelligence",
+    "appVersion": "TyON v0.2",
+    "demoVersion": "Demo Version",
+    "platformNote": "TikTok Shop US Only",
+    "tiktokShopBadge": "TikTok Shop US",
+    "retry": "Retry",
+    "copyToClipboard": "Copy to clipboard",
+    "regenerate": "Regenerate",
+    "clear": "Clear",
+    "clearAllFilters": "Clear all filters",
+    "cached": "cached",
+    "target": "Target",
+    "untitled": "Untitled Product",
+    "noProductsFound": "No products found for \"{keyword}\".",
+    "noProductsMatchFilters": "No products match your filters.",
+    "errorFailedToLoad": "Failed to load",
+    "errorFailedProducts": "Failed to load products",
+    "errorFailedReport": "Failed to load report",
+    "errorUnknown": "Unknown error",
+    "aiEstimated": "AI Estimated",
+    "verified": "Verified"
+  },
+  "nav": {
+    "search": "Search",
+    "analysis": "Analysis",
+    "reports": "Reports",
+    "products": "Products",
+    "settings": "Settings"
+  },
+  "search": {
+    "title": "TyON",
+    "subtitle": "TikTok Shop Product Intelligence",
+    "searchKeyword": "Search Keyword",
+    "placeholder": "e.g. wireless earbuds, yoga mat...",
+    "startResearch": "Start Research",
+    "tryLabel": "Try:",
+    "footer": "TikTok Shop US · AI-Powered Research"
+  },
+  "analysis": {
+    "pageTitle": "Analysis",
+    "generateReport": "Generate AI Report",
+    "moreData": "More Data & Charts",
+    "stats": {
+      "products": "Products",
+      "avgPrice": "Avg Price",
+      "avgRating": "Avg Rating",
+      "totalSold": "Total Sold"
+    },
+    "opportunityScore": "Opportunity Score",
+    "outOf": "/ 100",
+    "filterBar": {
+      "filters": "Filters",
+      "minPrice": "Min Price",
+      "maxPrice": "Max Price",
+      "minSold": "Min Sold",
+      "minRating": "Min Rating",
+      "sort": {
+        "bestSellers": "Best sellers",
+        "priceHighLow": "Price: High to Low",
+        "topRated": "Top rated"
+      },
+      "soldOptions": {
+        "any": "Any sales",
+        "100": "100+",
+        "1k": "1K+",
+        "10k": "10K+",
+        "50k": "50K+"
+      },
+      "ratingOptions": {
+        "any": "Any rating",
+        "three": "3.0+",
+        "three_five": "3.5+",
+        "four": "4.0+",
+        "four_five": "4.5+"
+      }
+    },
+    "competitorTable": {
+      "title": "Top Competitors",
+      "product": "Product",
+      "price": "Price",
+      "sold": "Sold",
+      "rating": "Rating",
+      "score": "Score"
+    },
+    "charts": {
+      "priceDistribution": "Price Distribution",
+      "topSellers": "Top Sellers"
+    },
+    "aiInsights": "AI Key Insights",
+    "aiStrategy": "AI Operation Suggestions",
+    "aiRecommendation": "AI Recommendation"
+  },
+  "report": {
+    "pageTitle": "Research Report",
+    "productDetails": "Product Details",
+    "opportunityScore": "Opportunity Score",
+    "outOf": "/ 100",
+    "marketTrends": "Market Trends",
+    "marketSize": "Market Size",
+    "competition": "Competition",
+    "topCompetitors": "Top Competitors",
+    "listingGenerator": "Listing Generator",
+    "aiInsights": "AI Key Insights",
+    "aiStrategy": "AI Operation Suggestions",
+    "aiRecommendation": "AI Recommendation",
+    "seoTitle": "SEO Title",
+    "bulletPoints": "5 Bullet Points",
+    "productDescription": "Product Description",
+    "backendKeywords": "Backend Keywords",
+    "regenerate": "Regenerate"
+  },
+  "insightCard": {
+    "title": "AI Key Insights"
+  },
+  "strategyCard": {
+    "title": "AI Operation Suggestions",
+    "targetAudience": "Target Audience",
+    "contentIdeas": "Content Ideas",
+    "influencerTypes": "Influencer Types",
+    "suggestedPricing": "Suggested Pricing"
+  },
+  "recommendationCard": {
+    "title": "AI Recommendation",
+    "targetAudience": "Target Audience",
+    "riskAnalysis": "Risk Analysis"
+  },
+  "listingGenerator": {
+    "title": "Listing Generator",
+    "seoTitle": "SEO Title",
+    "bulletPoints": "5 Bullet Points",
+    "productDescription": "Product Description",
+    "backendKeywords": "Backend Keywords",
+    "regenerate": "Regenerate"
+  }
+}

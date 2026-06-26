@@ -1,0 +1,108 @@
+import type { ResearchResponse } from "@/types/report";
+
+export const MOCK_RESEARCH: ResearchResponse = {
+  products: [
+    {
+      title: "MSHUKCOE Wireless Headphones In-ear Design Noise Cancelling True Wireless Earbuds",
+      price: 14.9,
+      sold_count: "33.8K sold",
+      rating: 4.2,
+      image_url: "",
+      product_url: "",
+      shop_name: "MSHUKCOE",
+      data_source: "seed",
+    },
+    {
+      title: "JLab GO Sport+ True Wireless Earbuds with Charging Case",
+      price: 24.98,
+      sold_count: "49.5K sold",
+      rating: 4.5,
+      image_url: "",
+      product_url: "",
+      shop_name: "JLab",
+      data_source: "seed",
+    },
+    {
+      title: "Nothing Ear (a) Wireless Earbuds with ChatGPT Integration",
+      price: 59.99,
+      sold_count: "518 sold",
+      rating: 4.3,
+      image_url: "",
+      product_url: "",
+      shop_name: "CMF by Nothing",
+      data_source: "seed",
+    },
+    {
+      title: "Wireless Bluetooth Headphones Tiny Size Invisible Earbuds (2 Pairs)",
+      price: 13.99,
+      sold_count: "931 sold",
+      rating: 3.9,
+      image_url: "",
+      product_url: "",
+      shop_name: "Example Seller",
+      data_source: "seed",
+    },
+    {
+      title: "CMF Buds 2a Wireless Bluetooth Earbuds",
+      price: 39.99,
+      sold_count: "2.1K sold",
+      rating: 4.6,
+      image_url: "",
+      product_url: "",
+      shop_name: "CMF by Nothing",
+      data_source: "seed",
+    },
+  ],
+  analysis: {
+    product: {
+      title: "MSHUKCOE Wireless Headphones In-ear Noise Cancelling True Wireless Earbuds",
+      price: "$14.90",
+      sold_count: "33.8K sold",
+      rating: 4.2,
+      image_url: "",
+      shop_name: "MSHUKCOE",
+    },
+    opportunity_score: 70,
+    market_size: "大",
+    competition: "中",
+    growth_trend: "+15% vs last month",
+    is_estimated: true,
+    selling_points: [
+      "Active noise cancelling at entry-level price point",
+      "In-ear design with ergonomic fit for extended wear",
+      "True wireless with stable Bluetooth 6.0 connectivity",
+      "Waterproof rating suitable for workouts and outdoor use",
+    ],
+    pain_points: [
+      "Low brand recognition in a crowded category",
+      "No rating data available — buyers may hesitate",
+      "Average battery life compared to premium alternatives",
+      "Limited color and style options for personalization",
+    ],
+    differentiation_opportunities: [
+      "Add longer battery life (40h+) as a headline feature",
+      "Include IPX6 waterproof certification in packaging",
+      "Offer 3+ colorways with matching case designs",
+      "Bundle with a 1-year warranty to reduce purchase friction",
+    ],
+  },
+  strategy: {
+    target_audience:
+      "Budget-conscious young adults aged 18–30, students and commuters seeking affordable noise-cancelling earbuds for daily use",
+    content_ideas: [
+      "Unboxing video highlighting premium feel at a budget price",
+      "Side-by-side noise cancelling test vs. $100+ earbuds",
+      "Day-in-the-life: commute, gym, study sessions with the earbuds",
+      "User testimonial compilation — real reviews, real reactions",
+    ],
+    influencer_types: [
+      "Budget tech reviewers (性价比推荐博主)",
+      "College lifestyle creators (学生党)",
+      "Fitness & workout influencers (运动场景)",
+    ],
+    pricing_suggestion: "$14.90 – $24.90",
+    risk_analysis:
+      "Primary risk is low brand trust in a category dominated by established names; price wars could compress already-thin margins. Recommend aggressive content marketing to build credibility quickly.",
+    recommendation: "推荐 — 市场需求大且竞争适中，低价策略适合快速起量",
+  },
+};
