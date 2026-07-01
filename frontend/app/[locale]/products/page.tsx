@@ -19,13 +19,14 @@ import ProductCard from "@/components/product-card";
 import type { ProductWithCategory } from "@/types/report";
 import { useTranslations } from "next-intl";
 
-const CATEGORIES = [
-  { label: "All", value: "all" },
-  { label: "Wireless Earbuds", value: "wireless earbuds" },
-  { label: "Portable Blender", value: "portable blender" },
-  { label: "Phone Case", value: "phone case" },
-  { label: "Yoga Mat", value: "yoga mat" },
-];
+// Category value keys — labels come from i18n
+const CATEGORY_VALUES = [
+  { i18nKey: "allCategories", value: "all", category: null },
+  { i18nKey: "category.wirelessEarbuds", value: "wireless earbuds" },
+  { i18nKey: "category.portableBlender", value: "portable blender" },
+  { i18nKey: "category.phoneCase", value: "phone case" },
+  { i18nKey: "category.yogaMat", value: "yoga mat" },
+] as const;
 
 // ---------------------------------------------------------------------------
 // Skeleton
@@ -80,6 +81,16 @@ export default function ProductsPage() {
   const tc = useTranslations("common");
 
   const allProducts: ProductWithCategory[] = data?.products ?? [];
+
+  // Build category options with translated labels
+  const categoryOptions = useMemo(
+    () =>
+      CATEGORY_VALUES.map((c) => ({
+        label: t(c.i18nKey),
+        value: c.value,
+      })),
+    [t],
+  );
 
   // Local filter: category + title search
   const filtered = useMemo(() => {
@@ -140,14 +151,16 @@ export default function ProductsPage() {
         </div>
 
         {/* Category filter */}
-        <Select value={category} onValueChange={setCategory}>
+        <Select value={category} onValueChange={(v) => setCategory(v ?? "all")}>
           <SelectTrigger className="h-9 w-40 rounded-xl border-neutral-200 bg-white text-[12px]">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
-            {CATEGORIES.map((c) => (
+            {categoryOptions.map((c) => (
               <SelectItem key={c.value} value={c.value} className="text-[12px]">
-                {c.value === "all" ? `${t("allCategories")} (${allProducts.length})` : `${c.label} (${allProducts.filter((p) => p.category === c.value).length})`}
+                {c.value === "all"
+                  ? `${c.label} (${allProducts.length})`
+                  : `${c.label} (${allProducts.filter((p) => p.category === c.value).length})`}
               </SelectItem>
             ))}
           </SelectContent>

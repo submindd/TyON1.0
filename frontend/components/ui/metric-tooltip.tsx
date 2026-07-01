@@ -2,18 +2,21 @@
 
 import { useState, useRef, useEffect } from "react";
 import { HelpCircle } from "lucide-react";
+import { useLocale } from "next-intl";
 import { getMetricExplanation } from "@/lib/metricGlossary";
 
 interface MetricTooltipProps {
   /** The exact English label used as the glossary lookup key. */
   label: string;
-  /** Only renders when locale is "zh". */
-  locale?: string;
+  /** Optional language override (falls back to next-intl useLocale). */
+  lang?: "en" | "zh";
 }
 
-export default function MetricTooltip({ label, locale }: MetricTooltipProps) {
+export default function MetricTooltip({ label, lang: propLang }: MetricTooltipProps) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLSpanElement>(null);
+  const intlLocale = useLocale() as "en" | "zh";
+  const lang = propLang ?? intlLocale;
 
   // Close on outside click
   useEffect(() => {
@@ -28,7 +31,7 @@ export default function MetricTooltip({ label, locale }: MetricTooltipProps) {
   }, [open]);
 
   const entry = getMetricExplanation(label);
-  if (!entry || locale !== "zh") return null;
+  if (!entry) return null;
 
   return (
     <span ref={ref} className="relative inline-flex items-center">
@@ -39,7 +42,7 @@ export default function MetricTooltip({ label, locale }: MetricTooltipProps) {
           setOpen(!open);
         }}
         className="ml-1 inline-flex h-4 w-4 items-center justify-center rounded-full text-neutral-300 transition-colors hover:text-neutral-500 hover:bg-neutral-100"
-        aria-label={`${label} 说明`}
+        aria-label={`${label}`}
       >
         <HelpCircle size={11} />
       </button>
@@ -49,9 +52,9 @@ export default function MetricTooltip({ label, locale }: MetricTooltipProps) {
           style={{ borderColor: "#D5D0C7" }}
         >
           <span className="block text-[10px] font-medium text-neutral-800 mb-0.5">
-            {entry.shortLabel}
+            {label}
           </span>
-          {entry.zhExplanation}
+          {entry[lang]}
         </span>
       )}
     </span>

@@ -9,6 +9,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import { useTranslations } from "next-intl";
 import type { ResearchProduct } from "@/types/report";
 import { buildPriceBuckets } from "@/lib/analysis-filters";
 
@@ -17,6 +18,7 @@ interface PriceDistributionProps {
 }
 
 export default function PriceDistribution({ products }: PriceDistributionProps) {
+  const t = useTranslations("chart.priceDistribution");
   const buckets = buildPriceBuckets(products, 7);
 
   if (buckets.length === 0) {
@@ -25,7 +27,7 @@ export default function PriceDistribution({ products }: PriceDistributionProps) 
         className="flex items-center justify-center rounded-2xl"
         style={{ height: 180, backgroundColor: "#F0EDE7" }}
       >
-        <p className="text-xs text-neutral-300">No price data available</p>
+        <p className="text-xs text-neutral-300">{t("noData")}</p>
       </div>
     );
   }

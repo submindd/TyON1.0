@@ -7,7 +7,7 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    router.replace("/search");
+    router.replace("/en");
   }, [router]);
 
   return null;

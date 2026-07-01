@@ -13,13 +13,16 @@ import { buildRadarData } from "@/lib/chart-utils";
 interface OpportunityRadarProps {
   score: number;
   height?: number;
+  /** Translated dimension names [Demand, Growth, Competition, Saturation, Profit] */
+  dimensions?: readonly [string, string, string, string, string];
 }
 
 export default function OpportunityRadar({
   score,
   height = 200,
+  dimensions,
 }: OpportunityRadarProps) {
-  const data = buildRadarData(score);
+  const data = buildRadarData(score, dimensions);
 
   return (
     <ResponsiveContainer width="100%" height={height}>

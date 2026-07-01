@@ -1,6 +1,7 @@
 "use client";
 
 import { AlertCircle, RefreshCw } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -11,10 +12,13 @@ interface ErrorCardProps {
 }
 
 export default function ErrorCard({
-  title = "Failed to load",
+  title,
   message,
   onRetry,
 }: ErrorCardProps) {
+  const t = useTranslations("common");
+  const displayTitle = title ?? t("errorFailedToLoad");
+
   return (
     <div
       className="flex min-h-[60vh] items-center justify-center"
@@ -27,7 +31,7 @@ export default function ErrorCard({
         <CardContent className="flex flex-col items-center gap-4 p-8 text-center">
           <AlertCircle size={32} className="text-red-400" />
           <div>
-            <p className="font-medium text-neutral-800">{title}</p>
+            <p className="font-medium text-neutral-800">{displayTitle}</p>
             <p className="mt-1 text-sm text-neutral-500">{message}</p>
           </div>
           <Button
@@ -36,7 +40,7 @@ export default function ErrorCard({
             className="rounded-xl"
           >
             <RefreshCw size={14} className="mr-1.5" />
-            Retry
+            {t("retry")}
           </Button>
         </CardContent>
       </Card>

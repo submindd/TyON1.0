@@ -43,28 +43,18 @@ import { useTranslations, useLocale } from "next-intl";
 import MetricTooltip from "@/components/ui/metric-tooltip";
 
 // ---------------------------------------------------------------------------
-// Constants
+// Option value constants (labels come from i18n at render time)
 // ---------------------------------------------------------------------------
-const SOLD_OPTIONS = [
-  { label: "Any sales", value: "0" },
-  { label: "100+", value: "100" },
-  { label: "1K+", value: "1000" },
-  { label: "10K+", value: "10000" },
-  { label: "50K+", value: "50000" },
-];
+const SOLD_VALUES = ["0", "100", "1000", "10000", "50000"] as const;
+const SOLD_I18N_KEYS = ["any", "100", "1k", "10k", "50k"] as const;
 
-const RATING_OPTIONS = [
-  { label: "Any rating", value: "0" },
-  { label: "3.0+", value: "3" },
-  { label: "3.5+", value: "3.5" },
-  { label: "4.0+", value: "4" },
-  { label: "4.5+", value: "4.5" },
-];
+const RATING_VALUES = ["0", "3", "3.5", "4", "4.5"] as const;
+const RATING_I18N_KEYS = ["any", "three", "three_five", "four", "four_five"] as const;
 
-const SORT_OPTIONS: { label: string; value: SortKey }[] = [
-  { label: "Best sellers", value: "sold" },
-  { label: "Price: High to Low", value: "price" },
-  { label: "Top rated", value: "rating" },
+const SORT_OPTIONS: { i18nKey: string; value: SortKey }[] = [
+  { i18nKey: "filterBar.sort.bestSellers", value: "sold" },
+  { i18nKey: "filterBar.sort.priceHighLow", value: "price" },
+  { i18nKey: "filterBar.sort.topRated", value: "rating" },
 ];
 
 // ---------------------------------------------------------------------------
@@ -75,13 +65,13 @@ function StatCard({
   value,
   icon: Icon,
   glossaryKey,
-  locale,
+  lang,
 }: {
   label: string;
   value: string;
   icon: typeof TrendingUp;
   glossaryKey?: string;
-  locale: string;
+  lang: "en" | "zh";
 }) {
   return (
     <Card
@@ -98,7 +88,7 @@ function StatCard({
         <div>
           <p className="flex items-center gap-0.5 text-[10px] font-medium uppercase tracking-wide text-neutral-400">
             {label}
-            {glossaryKey && <MetricTooltip label={glossaryKey} locale={locale} />}
+            {glossaryKey && <MetricTooltip label={glossaryKey} lang={lang} />}
           </p>
           <p className="text-sm font-semibold text-neutral-900">{value}</p>
         </div>
@@ -113,11 +103,13 @@ function StatCard({
 function CompetitorTable({
   products,
   labels,
-  locale,
+  lang,
+  untitledText,
 }: {
   products: ResearchProduct[];
   labels: { title: string; product: string; price: string; sold: string; rating: string; score: string };
-  locale: string;
+  lang: "en" | "zh";
+  untitledText: string;
 }) {
   const scores = useMemo(() => computeAllScores(products), [products]);
 
@@ -141,7 +133,7 @@ function CompetitorTable({
       <CardContent className="p-4">
         <p className="mb-4 flex items-center gap-1 text-[10px] font-medium uppercase tracking-wide text-neutral-400">
           {labels.title}
-          <MetricTooltip label="Top Competitors" locale={locale} />
+          <MetricTooltip label="Top Competitors" lang={lang} />
         </p>
 
         {/* Table header */}
@@ -158,7 +150,7 @@ function CompetitorTable({
           <span>{labels.rating}</span>
           <span className="flex items-center justify-center gap-0.5">
             {labels.score}
-            <MetricTooltip label="Score" locale={locale} />
+            <MetricTooltip label="Score" lang={lang} />
           </span>
         </div>
 
@@ -175,7 +167,7 @@ function CompetitorTable({
             >
               <div className="min-w-0">
                 <p className="truncate text-[12px] font-medium text-neutral-800">
-                  {product.title ?? "Untitled"}
+                  {product.title ?? untitledText}
                 </p>
               </div>
               <span className="text-[12px] font-medium text-neutral-700">
@@ -296,7 +288,37 @@ export default function AnalysisPage() {
 
   const t = useTranslations("analysis");
   const tc = useTranslations("common");
-  const locale = useLocale();
+  const lang = useLocale() as "en" | "zh";
+
+  // ---- Build i18n option arrays ------------------------------------------
+  const soldOptions = useMemo(
+    () =>
+      SOLD_I18N_KEYS.map((k, i) => ({
+        label: t(`filterBar.soldOptions.${k}`),
+        value: SOLD_VALUES[i],
+      })),
+    [t],
+  );
+
+  const ratingOptions = useMemo(
+    () =>
+      RATING_I18N_KEYS.map((k, i) => ({
+        label: t(`filterBar.ratingOptions.${k}`),
+        value: RATING_VALUES[i],
+      })),
+    [t],
+  );
+
+  const sortOptions = useMemo(
+    () =>
+      SORT_OPTIONS.map((o) => ({
+        label: t(o.i18nKey),
+        value: o.value,
+      })),
+    [t],
+  );
+
+  const untitledText = tc("untitled");
 
   // ---- Render -----------------------------------------------------------
 
@@ -329,7 +351,7 @@ export default function AnalysisPage() {
           </h1>
         </div>
         <Button
-          onClick={() => router.push(`/report/${encodeURIComponent(keyword)}`)}
+          onClick={() => router.push(`/${lang}/report/${encodeURIComponent(keyword)}`)}
           disabled={products.length === 0}
           className="h-10 rounded-xl bg-neutral-900 text-sm hover:bg-neutral-800"
         >
@@ -349,21 +371,21 @@ export default function AnalysisPage() {
           label={t("stats.products")}
           value={String(stats.totalProducts)}
           icon={ShoppingCart}
-          locale={locale}
+          lang={lang}
         />
         <StatCard
           label={t("stats.avgPrice")}
           value={stats.avgPrice != null ? `$${stats.avgPrice.toFixed(2)}` : "—"}
           icon={DollarSign}
           glossaryKey="Avg Price"
-          locale={locale}
+          lang={lang}
         />
         <StatCard
           label={t("stats.avgRating")}
           value={stats.avgRating != null ? stats.avgRating.toFixed(1) : "—"}
           icon={Star}
           glossaryKey="Avg Rating"
-          locale={locale}
+          lang={lang}
         />
         <StatCard
           label={t("stats.totalSold")}
@@ -374,7 +396,7 @@ export default function AnalysisPage() {
           }
           icon={TrendingUp}
           glossaryKey="Total Sold"
-          locale={locale}
+          lang={lang}
         />
       </motion.div>
 
@@ -394,7 +416,7 @@ export default function AnalysisPage() {
               <CardContent className="p-4">
                 <p className="mb-3 text-[10px] font-medium uppercase tracking-wide text-neutral-400">
                   {t("charts.topSellers")}
-                  <MetricTooltip label="Top Sellers" locale={locale} />
+                  <MetricTooltip label="Top Sellers" lang={lang} />
                 </p>
                 <TopSellers products={products} />
               </CardContent>
@@ -413,7 +435,7 @@ export default function AnalysisPage() {
               <CardContent className="p-4">
                 <p className="mb-3 text-[10px] font-medium uppercase tracking-wide text-neutral-400">
                   {t("charts.priceDistribution")}
-                  <MetricTooltip label="Price Distribution" locale={locale} />
+                  <MetricTooltip label="Price Distribution" lang={lang} />
                 </p>
                 <PriceDistribution products={products} />
               </CardContent>
@@ -438,7 +460,8 @@ export default function AnalysisPage() {
                 rating: t("competitorTable.rating"),
                 score: t("competitorTable.score"),
               }}
-              locale={locale}
+              lang={lang}
+              untitledText={untitledText}
             />
           </motion.div>
 
@@ -475,7 +498,7 @@ export default function AnalysisPage() {
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  {SORT_OPTIONS.map((o) => (
+                  {sortOptions.map((o) => (
                     <SelectItem key={o.value} value={o.value} className="text-[11px]">
                       {o.label}
                     </SelectItem>
@@ -495,7 +518,7 @@ export default function AnalysisPage() {
                 <label className="text-[10px] text-neutral-500">{t("filterBar.minPrice")}</label>
                 <Input
                   type="number"
-                  placeholder="$0"
+                  placeholder={t("filterBar.priceMinPlaceholder")}
                   value={filters.priceMin ?? ""}
                   onChange={(e) =>
                     setFilters((f) => ({
@@ -510,7 +533,7 @@ export default function AnalysisPage() {
                 <label className="text-[10px] text-neutral-500">{t("filterBar.maxPrice")}</label>
                 <Input
                   type="number"
-                  placeholder="$999"
+                  placeholder={t("filterBar.priceMaxPlaceholder")}
                   value={filters.priceMax ?? ""}
                   onChange={(e) =>
                     setFilters((f) => ({
@@ -536,7 +559,7 @@ export default function AnalysisPage() {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    {SOLD_OPTIONS.map((o) => (
+                    {soldOptions.map((o) => (
                       <SelectItem key={o.value} value={o.value} className="text-[11px]">
                         {o.label}
                       </SelectItem>
@@ -559,7 +582,7 @@ export default function AnalysisPage() {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    {RATING_OPTIONS.map((o) => (
+                    {ratingOptions.map((o) => (
                       <SelectItem key={o.value} value={o.value} className="text-[11px]">
                         {o.label}
                       </SelectItem>
@@ -583,7 +606,7 @@ export default function AnalysisPage() {
                 <div className="py-8 text-center">
                   <p className="text-sm text-neutral-400">
                     {products.length === 0
-                      ? tc("noProductsFound").replace("{keyword}", keyword)
+                      ? tc("noProductsFound", { keyword })
                       : tc("noProductsMatchFilters")}
                   </p>
                   {products.length > 0 && (

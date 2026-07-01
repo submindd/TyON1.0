@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import {
   Search,
   Package,
@@ -15,18 +15,23 @@ export default function Sidebar() {
   const router = useRouter();
   const t = useTranslations("nav");
   const tc = useTranslations("common");
+  const lang = useLocale() as "en" | "zh";
+
+  // Strip locale prefix for active-route matching
+  const segments = pathname.split("/").filter(Boolean);
+  const pageSegment = segments.length > 1 ? segments[1] : segments[0] ?? "";
 
   const MENU_ITEMS: {
     label: string;
     icon: typeof Search;
     href: string;
-    matchPattern: string;
+    matchSegment: string;
   }[] = [
-    { label: t("search"), icon: Search, href: "/search", matchPattern: "/search" },
-    { label: t("analysis"), icon: BarChart3, href: "/search", matchPattern: "/analysis" },
-    { label: t("reports"), icon: FileText, href: "/search", matchPattern: "/report" },
-    { label: t("products"), icon: Package, href: "/products", matchPattern: "/products" },
-    { label: t("settings"), icon: Settings, href: "/search", matchPattern: "/settings" },
+    { label: t("search"), icon: Search, href: `/${lang}/search`, matchSegment: "search" },
+    { label: t("analysis"), icon: BarChart3, href: `/${lang}/search`, matchSegment: "analysis" },
+    { label: t("reports"), icon: FileText, href: `/${lang}/search`, matchSegment: "report" },
+    { label: t("products"), icon: Package, href: `/${lang}/products`, matchSegment: "products" },
+    { label: t("settings"), icon: Settings, href: `/${lang}/search`, matchSegment: "settings" },
   ];
 
   return (
@@ -46,8 +51,8 @@ export default function Sidebar() {
 
       {/* ---------- Menu ---------- */}
       <nav className="flex flex-1 flex-col gap-1">
-        {MENU_ITEMS.map(({ label, icon: Icon, href, matchPattern }) => {
-          const active = pathname.startsWith(matchPattern);
+        {MENU_ITEMS.map(({ label, icon: Icon, href, matchSegment }) => {
+          const active = pageSegment.startsWith(matchSegment);
           return (
             <button
               key={label}

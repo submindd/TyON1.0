@@ -94,12 +94,21 @@ function ReportSkeleton() {
 // -------- success --------
 
 function ReportSuccess({ data }: { data: ResearchResponse }) {
-  const { analysis, strategy, products } = data;
+  const { analysis, strategy, products, listing } = data;
   const target = products[0];
   const competitors = products.slice(1);
   const t = useTranslations("report");
   const tc = useTranslations("common");
-  const locale = useLocale();
+  const tx = useTranslations("chart.radar");
+  const lang = useLocale() as "en" | "zh";
+
+  const radarDimensions = [
+    tx("demand"),
+    tx("growth"),
+    tx("competition"),
+    tx("saturation"),
+    tx("profit"),
+  ] as const;
 
   return (
     <>
@@ -161,7 +170,7 @@ function ReportSuccess({ data }: { data: ResearchResponse }) {
               <CardContent className="flex flex-col items-center justify-center p-4" style={{ minHeight: 420 }}>
                 <p className="mb-6 flex items-center gap-1 self-start text-[10px] font-medium uppercase tracking-wide text-neutral-400">
                   {t("opportunityScore")}
-                  <MetricTooltip label="Opportunity Score" locale={locale} />
+                  <MetricTooltip label="Opportunity Score" lang={lang} />
                 </p>
                 <div className="flex w-full items-center justify-center gap-6">
                   <div className="flex-shrink-0 text-center" style={{ width: 130 }}>
@@ -171,10 +180,14 @@ function ReportSuccess({ data }: { data: ResearchResponse }) {
                     >
                       {analysis.opportunity_score}
                     </div>
-                    <p className="mt-2 text-[11px] text-neutral-400">/ 100</p>
+                    <p className="mt-2 text-[11px] text-neutral-400">{t("outOf")}</p>
                   </div>
                   <div className="min-w-0 flex-1">
-                    <OpportunityRadar score={analysis.opportunity_score} height={300} />
+                    <OpportunityRadar
+                      score={analysis.opportunity_score}
+                      height={300}
+                      dimensions={radarDimensions}
+                    />
                   </div>
                 </div>
               </CardContent>
@@ -253,8 +266,8 @@ function ReportSuccess({ data }: { data: ResearchResponse }) {
                   </ResponsiveContainer>
                 </div>
                 <div className="mt-4 flex items-center justify-between text-xs text-neutral-400">
-                  <span>{t("marketSize")}: {analysis.market_size}</span>
-                  <span>{t("competition")}: {analysis.competition}</span>
+                  <span>{t("marketSize")}: {analysis.market_size[lang]}</span>
+                  <span>{t("competition")}: {analysis.competition[lang]}</span>
                   <span>{analysis.is_estimated ? tc("aiEstimated") : tc("verified")}</span>
                 </div>
               </CardContent>
@@ -271,7 +284,7 @@ function ReportSuccess({ data }: { data: ResearchResponse }) {
         className="mt-6"
       >
         <p className="mb-3 text-[10px] font-medium uppercase tracking-wide text-neutral-400">
-          AI 分析与运营建议
+          {t("aiSectionTitle")}
         </p>
 
         <div className="grid grid-cols-3 gap-3">
@@ -285,7 +298,7 @@ function ReportSuccess({ data }: { data: ResearchResponse }) {
         </div>
 
         <div className="mt-3">
-          <ListingGenerator analysis={analysis} products={products} />
+          {listing && <ListingGenerator listing={listing} />}
         </div>
       </motion.div>
     </>
@@ -297,6 +310,7 @@ function ReportSuccess({ data }: { data: ResearchResponse }) {
 export default function ReportPage() {
   const params = useParams<{ id: string }>();
   const keyword = decodeURIComponent(params.id);
+  const tc = useTranslations("common");
 
   const { data, isLoading, isError, error, refetch } = useQuery({
     queryKey: ["report", keyword],
@@ -311,8 +325,8 @@ export default function ReportPage() {
         <ReportSkeleton />
       ) : isError ? (
         <ErrorCard
-          title="Failed to load report"
-          message={(error as Error)?.message ?? "Unknown error"}
+          title={tc("errorFailedReport")}
+          message={(error as Error)?.message ?? tc("errorUnknown")}
           onRetry={() => refetch()}
         />
       ) : data ? (

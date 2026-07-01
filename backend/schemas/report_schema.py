@@ -1,10 +1,36 @@
 """Pydantic schemas for request/response validation.
 
-Also holds the schema used by ``llm_service.analyze_product`` for validating
-DeepSeek's structured JSON output.
+Also holds the schemas used by ``llm_service`` for validating DeepSeek's
+structured JSON output (analysis / strategy / listing).
 """
 
+from enum import Enum
+
 from pydantic import BaseModel, Field
+
+
+# ---------------------------------------------------------------------------
+# LocalizedText — unified bilingual type (TyON v1.1)
+# ---------------------------------------------------------------------------
+class LocalizedText(BaseModel):
+    """A text value with English and Chinese variants."""
+    en: str = ""
+    zh: str = ""
+
+
+# ---------------------------------------------------------------------------
+# Recommendation — structured verdict (TyON v1.1 Phase 3)
+# ---------------------------------------------------------------------------
+class RecommendationStatus(str, Enum):
+    RECOMMENDED = "recommended"
+    CAUTIOUS = "cautious"
+    NOT_RECOMMENDED = "not_recommended"
+
+
+class RecommendationResult(BaseModel):
+    """Machine-readable recommendation so the frontend never parses Chinese."""
+    status: RecommendationStatus
+    reason: LocalizedText
 
 
 # ---------------------------------------------------------------------------
@@ -22,31 +48,56 @@ class CleanedProduct(BaseModel):
 
 
 class AnalyzeResponse(BaseModel):
-    """Structured output that ``analyze_product`` expects from the LLM."""
+    """Structured output that ``analyze_product`` expects from the LLM.
+
+    All text fields are bilingual ``LocalizedText`` so the frontend can
+    render either language without re-fetching.
+    """
 
     product: CleanedProduct
     opportunity_score: int = Field(ge=0, le=100)
-    market_size: str  # "大" / "中" / "小" or short English description
-    competition: str  # "高" / "中" / "低"
-    growth_trend: str  # e.g. "+23% vs last month"
+    market_size: LocalizedText
+    competition: LocalizedText
+    growth_trend: LocalizedText
     is_estimated: bool = True
-    selling_points: list[str] = Field(min_length=1, max_length=6)
-    pain_points: list[str] = Field(min_length=1, max_length=6)
-    differentiation_opportunities: list[str] = Field(min_length=1, max_length=6)
+    selling_points: list[LocalizedText] = Field(min_length=1, max_length=6)
+    pain_points: list[LocalizedText] = Field(min_length=1, max_length=6)
+    differentiation_opportunities: list[LocalizedText] = Field(min_length=1, max_length=6)
 
 
 # ---------------------------------------------------------------------------
 # LLM strategy response (used by llm_service.generate_strategy)
 # ---------------------------------------------------------------------------
 class StrategyResponse(BaseModel):
-    """Structured output that ``generate_strategy`` expects from the LLM."""
+    """Structured output that ``generate_strategy`` expects from the LLM.
 
-    target_audience: str
-    content_ideas: list[str] = Field(min_length=1, max_length=6)
-    influencer_types: list[str] = Field(min_length=1, max_length=5)
-    pricing_suggestion: str
-    risk_analysis: str
-    recommendation: str  # "推荐" / "谨慎" / "不推荐"
+    All text fields are bilingual ``LocalizedText``.
+    ``recommendation`` uses a machine-readable enum so the frontend
+    never parses Chinese to determine card colour.
+    """
+
+    target_audience: LocalizedText
+    content_ideas: list[LocalizedText] = Field(min_length=1, max_length=6)
+    influencer_types: list[LocalizedText] = Field(min_length=1, max_length=5)
+    pricing_suggestion: LocalizedText
+    risk_analysis: LocalizedText
+    recommendation: RecommendationResult
+
+
+# ---------------------------------------------------------------------------
+# LLM listing response (used by llm_service.generate_listing)
+# ---------------------------------------------------------------------------
+class ListingResponse(BaseModel):
+    """AI-generated bilingual product listing content.
+
+    ``backend_keywords`` stays English-only because TikTok Shop's backend
+    keyword field requires English.
+    """
+
+    seo_title: LocalizedText
+    bullets: list[LocalizedText] = Field(min_length=5, max_length=5)
+    description: LocalizedText
+    backend_keywords: list[str] = Field(min_length=5, max_length=30)  # English only
 
 
 # ---------------------------------------------------------------------------
@@ -71,6 +122,7 @@ class ResearchResponse(BaseModel):
     products: list[ResearchProduct]
     analysis: AnalyzeResponse
     strategy: StrategyResponse
+    listing: ListingResponse | None = None  # None when listing generation is skipped
 
 
 # ---------------------------------------------------------------------------
@@ -82,11 +134,3 @@ class ResearchRequest(BaseModel):
     keyword: str
     platform: str = "tiktok"
     country: str = "US"
-
-
-# ---------------------------------------------------------------------------
-# TODO: API request/response schemas (future use)
-# ---------------------------------------------------------------------------
-# TODO: Define ReportCreate schema (source_url: str)
-# TODO: Define ReportResponse schema (id, title, content, source_url, created_at)
-# TODO: Define ScrapeRequest schema (url: str)

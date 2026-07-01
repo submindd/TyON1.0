@@ -13,7 +13,7 @@ from typing import Any
 
 from core.redis_client import get_redis
 from services.scrape_service import ScrapeError, search_products
-from services.llm_service import LLMParseError, analyze_product, generate_strategy
+from services.llm_service import LLMParseError, analyze_product, generate_strategy, generate_listing
 
 logger = logging.getLogger(__name__)
 
@@ -140,7 +140,6 @@ async def get_or_create_report(
                 logger.info("Memory cache HIT for '%s'", norm_key)
                 return json.loads(report_json)
             else:
-                # Expired — clean up
                 del _memory_cache[cache_key]
 
     logger.info("Cache MISS for '%s', running full pipeline", norm_key)
@@ -154,11 +153,13 @@ async def get_or_create_report(
 
     analysis = await analyze_product(raw_products, target_product_index=0)
     strategy = await generate_strategy(analysis)
+    listing = await generate_listing(analysis, strategy)
 
     report: dict[str, Any] = {
         "products": raw_products,
         "analysis": analysis,
         "strategy": strategy,
+        "listing": listing,
         "keyword": norm_key,
         "platform": platform,
         "country": country,

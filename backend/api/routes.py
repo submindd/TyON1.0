@@ -76,4 +76,5 @@ async def research(body: ResearchRequest):
         products=[ResearchProduct(**p) for p in report["products"]],
         analysis=report["analysis"],
         strategy=report["strategy"],
+        listing=report.get("listing"),
     )

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Search, Loader2, TrendingUp } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -21,13 +21,14 @@ export default function SearchPage() {
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
   const t = useTranslations("search");
+  const lang = useLocale() as "en" | "zh";
 
   const handleSearch = () => {
     const kw = keyword.trim();
     if (!kw || loading) return;
     setError(null);
     setLoading(true);
-    router.push(`/analysis/${encodeURIComponent(kw)}`);
+    router.push(`/${lang}/analysis/${encodeURIComponent(kw)}`);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {

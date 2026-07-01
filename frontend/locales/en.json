@@ -21,7 +21,9 @@
     "errorFailedReport": "Failed to load report",
     "errorUnknown": "Unknown error",
     "aiEstimated": "AI Estimated",
-    "verified": "Verified"
+    "verified": "Verified",
+    "dashboard": "Dashboard",
+    "emdash": "—"
   },
   "nav": {
     "search": "Search",
@@ -57,6 +59,8 @@
       "maxPrice": "Max Price",
       "minSold": "Min Sold",
       "minRating": "Min Rating",
+      "priceMinPlaceholder": "$0",
+      "priceMaxPlaceholder": "$999",
       "sort": {
         "bestSellers": "Best sellers",
         "priceHighLow": "Price: High to Low",
@@ -106,6 +110,7 @@
     "aiInsights": "AI Key Insights",
     "aiStrategy": "AI Operation Suggestions",
     "aiRecommendation": "AI Recommendation",
+    "aiSectionTitle": "AI Analysis & Strategy",
     "seoTitle": "SEO Title",
     "bulletPoints": "5 Bullet Points",
     "productDescription": "Product Description",
@@ -113,7 +118,10 @@
     "regenerate": "Regenerate"
   },
   "insightCard": {
-    "title": "AI Key Insights"
+    "title": "AI Key Insights",
+    "sellingPoints": "Selling Points",
+    "painPoints": "Pain Points",
+    "differentiationOpportunities": "Differentiation Opportunities"
   },
   "strategyCard": {
     "title": "AI Operation Suggestions",
@@ -133,7 +141,13 @@
     "allCategories": "All",
     "resultCount": "results",
     "noSearchResults": "No products match your search.",
-    "noProducts": "No products available."
+    "noProducts": "No products available.",
+    "category": {
+      "wirelessEarbuds": "Wireless Earbuds",
+      "portableBlender": "Portable Blender",
+      "phoneCase": "Phone Case",
+      "yogaMat": "Yoga Mat"
+    }
   },
   "listingGenerator": {
     "title": "Listing Generator",
@@ -141,6 +155,23 @@
     "bulletPoints": "5 Bullet Points",
     "productDescription": "Product Description",
     "backendKeywords": "Backend Keywords",
-    "regenerate": "Regenerate"
+    "regenerate": "Regenerate",
+    "copyToClipboard": "Copy to clipboard"
+  },
+  "chart": {
+    "radar": {
+      "demand": "Demand",
+      "growth": "Growth",
+      "competition": "Competition",
+      "saturation": "Saturation",
+      "profit": "Profit"
+    },
+    "topSellers": {
+      "noData": "No sales data available",
+      "sold": "Sold"
+    },
+    "priceDistribution": {
+      "noData": "No price data available"
+    }
   }
 }

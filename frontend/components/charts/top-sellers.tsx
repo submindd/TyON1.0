@@ -9,6 +9,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import { useTranslations } from "next-intl";
 import type { ResearchProduct } from "@/types/report";
 import { parseSoldCount } from "@/lib/analysis-filters";
 
@@ -17,15 +18,17 @@ interface TopSellersProps {
 }
 
 export default function TopSellers({ products }: TopSellersProps) {
+  const t = useTranslations("chart.topSellers");
+
   // Take top 8 by sold count
   const chartData = [...products]
     .sort((a, b) => parseSoldCount(b.sold_count) - parseSoldCount(a.sold_count))
     .slice(0, 8)
     .map((p) => ({
       name:
-        (p.title ?? "Untitled").length > 28
-          ? (p.title ?? "Untitled").slice(0, 25) + "..."
-          : (p.title ?? "Untitled"),
+        (p.title ?? "").length > 28
+          ? (p.title ?? "").slice(0, 25) + "..."
+          : (p.title ?? ""),
       sold: parseSoldCount(p.sold_count),
     }))
     .filter((d) => d.sold > 0);
@@ -36,7 +39,7 @@ export default function TopSellers({ products }: TopSellersProps) {
         className="flex items-center justify-center rounded-2xl"
         style={{ height: 180, backgroundColor: "#F0EDE7" }}
       >
-        <p className="text-xs text-neutral-300">No sales data available</p>
+        <p className="text-xs text-neutral-300">{t("noData")}</p>
       </div>
     );
   }
@@ -75,7 +78,7 @@ export default function TopSellers({ products }: TopSellersProps) {
             const v = Number(value);
             return [
               v >= 1000 ? `${(v / 1000).toFixed(1)}K` : String(v),
-              "Sold",
+              t("sold"),
             ] as [string, string];
           }}
         />

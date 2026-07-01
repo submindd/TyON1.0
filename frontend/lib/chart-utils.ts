@@ -7,15 +7,28 @@
  *
  * Dimensions: Demand / Growth / Competition / Saturation / Profit Margin.
  * Higher overall score → higher Demand, Growth, Profit; lower Competition, Saturation.
+ *
+ * @param score  Opportunity score 0–100
+ * @param dimensions  Optional translated dimension names (defaults to English)
  */
-export function buildRadarData(score: number) {
+export function buildRadarData(
+  score: number,
+  dimensions?: readonly [string, string, string, string, string],
+) {
   const t = score / 100;
+  const dims = dimensions ?? [
+    "Demand",
+    "Growth",
+    "Competition",
+    "Saturation",
+    "Profit",
+  ];
   return [
-    { dimension: "Demand", value: Math.round(55 + t * 40) },
-    { dimension: "Growth", value: Math.round(45 + t * 42) },
-    { dimension: "Competition", value: Math.round(65 - t * 20) },
-    { dimension: "Saturation", value: Math.round(50 - t * 15) },
-    { dimension: "Profit", value: Math.round(40 + t * 35) },
+    { dimension: dims[0], value: Math.round(55 + t * 40) },
+    { dimension: dims[1], value: Math.round(45 + t * 42) },
+    { dimension: dims[2], value: Math.round(65 - t * 20) },
+    { dimension: dims[3], value: Math.round(50 - t * 15) },
+    { dimension: dims[4], value: Math.round(40 + t * 35) },
   ];
 }
 

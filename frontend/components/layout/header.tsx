@@ -4,10 +4,20 @@ import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import LocaleSwitcher from "@/components/locale-switcher";
 
-function pageTitle(pathname: string): "search" | "analysis" | "reports" | null {
-  if (pathname.startsWith("/search")) return "search";
-  if (pathname.startsWith("/analysis")) return "analysis";
-  if (pathname.startsWith("/report")) return "reports";
+/** Extract the page segment from a locale-prefixed path.
+ *  e.g. "/en/analysis/wireless%20earbuds" → "analysis"
+ *       "/zh/search" → "search"
+ */
+function getPageSegment(pathname: string): string {
+  const segments = pathname.split("/").filter(Boolean);
+  // segments[0] = locale ("en"|"zh"), segments[1] = page
+  return segments.length > 1 ? segments[1] : "";
+}
+
+function pageTitleKey(segment: string): "search" | "analysis" | "reports" | null {
+  if (segment === "search") return "search";
+  if (segment === "analysis") return "analysis";
+  if (segment === "report") return "reports";
   return null;
 }
 
@@ -15,8 +25,9 @@ export default function Header() {
   const pathname = usePathname();
   const t = useTranslations("nav");
   const tc = useTranslations("common");
-  const key = pageTitle(pathname);
-  const title = key ? t(key) : "Dashboard";
+  const segment = getPageSegment(pathname);
+  const key = pageTitleKey(segment);
+  const title = key ? t(key) : tc("dashboard");
 
   return (
     <header

@@ -21,7 +21,9 @@
     "errorFailedReport": "报告数据加载失败",
     "errorUnknown": "未知错误",
     "aiEstimated": "AI 估算",
-    "verified": "已验证"
+    "verified": "已验证",
+    "dashboard": "仪表盘",
+    "emdash": "—"
   },
   "nav": {
     "search": "搜索",
@@ -57,6 +59,8 @@
       "maxPrice": "最高价",
       "minSold": "最低销量",
       "minRating": "最低评分",
+      "priceMinPlaceholder": "$0",
+      "priceMaxPlaceholder": "$999",
       "sort": {
         "bestSellers": "按销量",
         "priceHighLow": "价格从高到低",
@@ -106,6 +110,7 @@
     "aiInsights": "AI 关键洞察",
     "aiStrategy": "AI 运营建议",
     "aiRecommendation": "AI 推荐结论",
+    "aiSectionTitle": "AI 分析与运营建议",
     "seoTitle": "SEO 标题",
     "bulletPoints": "五点卖点",
     "productDescription": "商品描述",
@@ -113,7 +118,10 @@
     "regenerate": "重新生成"
   },
   "insightCard": {
-    "title": "AI 关键洞察"
+    "title": "AI 关键洞察",
+    "sellingPoints": "卖点",
+    "painPoints": "痛点",
+    "differentiationOpportunities": "差异化机会"
   },
   "strategyCard": {
     "title": "AI 运营建议",
@@ -133,7 +141,13 @@
     "allCategories": "全部",
     "resultCount": "个结果",
     "noSearchResults": "没有匹配的商品。",
-    "noProducts": "暂无商品数据。"
+    "noProducts": "暂无商品数据。",
+    "category": {
+      "wirelessEarbuds": "无线耳机",
+      "portableBlender": "便携搅拌机",
+      "phoneCase": "手机壳",
+      "yogaMat": "瑜伽垫"
+    }
   },
   "listingGenerator": {
     "title": "商品文案生成器",
@@ -141,6 +155,23 @@
     "bulletPoints": "五点卖点",
     "productDescription": "商品描述",
     "backendKeywords": "后台关键词",
-    "regenerate": "重新生成"
+    "regenerate": "重新生成",
+    "copyToClipboard": "复制到剪贴板"
+  },
+  "chart": {
+    "radar": {
+      "demand": "需求度",
+      "growth": "增长率",
+      "competition": "竞争友好度",
+      "saturation": "市场空间",
+      "profit": "利润空间"
+    },
+    "topSellers": {
+      "noData": "暂无销售数据",
+      "sold": "销量"
+    },
+    "priceDistribution": {
+      "noData": "暂无价格数据"
+    }
   }
 }
